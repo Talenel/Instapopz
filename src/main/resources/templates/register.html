@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org " xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include=" base::header">
+
+    <title>Login</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="sidebar" data-background-color="brown" data-active-color="danger" th:replace="base::sidebar">
+
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-default" th:replace="base::navbar">
+        </nav>
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-1">
+
+                    </div>
+                    <div class="col-md-7">
+                        <br/>
+                        <h2>Register</h2>
+                        <form action="#" th:action="@{/register}" th:object="${user}" method="post" id="userForm">
+
+                            <div class="form-group">
+                                <label for="select">Select User Type:</label>
+                                <br/>
+                                <select name="huge" class="selectpicker" data-style="btn-info btn-fill btn-block" form="userForm" th:field="*{roleName}" id="select">
+                                    <!--<option disabled selected> Choose city</option>-->
+
+                                    <option value="recruiter" th:text="${'recruiter'}">Recruit </option>
+                                    <option value="job seeker" th:text="${'job seeker'}">Job </option>
+
+
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="firstName">Enter First Name:</label>
+                                <input type="text" class="form-control" th:field="*{firstName}" id="firstName" placeholder="Jill"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First Name Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname">Enter Last Name:</label>
+                                <input type="text" class="form-control" th:field="*{lastName}" id="lastname" placeholder="Smith"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last Name Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Enter Email:</label>
+                                <input type="text" class="form-control" th:field="*{email}" id="email" placeholder="anemail@email.com"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="username">Enter Username:</label>
+                                <input type="text" class="form-control" th:field="*{username}" id="username" placeholder="ConnectUpUser"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Name Error</span>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Enter Password:</label>
+                                <input type="password" class="form-control" th:field="*{password}" id="password" placeholder="********"/>
+                                <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+                            </div>
+
+                            <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+                        </form>
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="footer" th:fragment="base::footer">
+        </footer>
+    </div>
+</div>
+</body>
+<th:block th:replace="base::scripts">
+</th:block>
+</html>
