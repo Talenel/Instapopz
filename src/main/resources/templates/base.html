@@ -74,28 +74,11 @@
 
                         <div class="collapse" id="collapseExample">
                             <ul class="nav">
+
                                 <li>
-                                    <a href="/resume/myresume">
-                                        <span class="sidebar-mini">Mr</span>
-                                        <span class="sidebar-normal">My Resume</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/resume/addEdu">
-                                        <span class="sidebar-mini">Ae</span>
-                                        <span class="sidebar-normal">Add Education</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/resume/addJob">
-                                        <span class="sidebar-mini">Aj</span>
-                                        <span class="sidebar-normal">Add Job</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/addSkill">
-                                        <span class="sidebar-mini">As</span>
-                                        <span class="sidebar-normal">Add Skill</span>
+                                    <a href="/create/upload">
+                                        <span class="sidebar-mini">U</span>
+                                        <span class="sidebar-normal">Upload Image</span>
                                     </a>
                                 </li>
                                 <li>
@@ -150,27 +133,18 @@
                         </div>
 
                     </li>
-                    <th:block sec:authorize="hasAuthority('recruiter')">
-                        <li>
-                            <a href="/posting/addPosting">
-                                <i class="ti-upload"></i>
-                                <p>Add a job Posting</p>
+                    <th:block sec:authorize="isAuthenticated()"
 
-                            </a>
-                        </li>
                         <li>
-                            <a href="/posting/myposts">
+                            <a href="/display/myphotos">
                                 <i class="ti-view-list"></i>
-                                <p>View My Postings</p>
+                                <p>View My Photos</p>
                             </a>
                         </li>
-                    </th:block>
-                    <th:block sec:authorize="isAuthenticated()">
-
                         <li>
-                            <a href="/posting/viewAllNotifications">
+                            <a href="/display/myfeed">
                                 <i class="ti-view-list-alt"></i>
-                                <p>View Job Notifications</p>
+                                <p>View Feed</p>
                             </a>
                         </li>
                     </th:block>
@@ -196,7 +170,7 @@
                     <a class="navbar-brand" href="#charts">Template</a>
                 </div>
                 <div class="collapse navbar-collapse">
-                    <th:block sec:authorize="isAuthenticated()">
+                    <!--<th:block sec:authorize="isAuthenticated()">
                         <form class="navbar-form navbar-left navbar-search-form" action="#" th:action="@{/search}" role="search" id="search" method="post">
                             <div class="input-group">
                                 <ul class="nav navbar-nav">
@@ -204,7 +178,7 @@
                                     <li><input type="text" value="" class="form-control" id="searching" name="searching" placeholder="Search..."/></li>
 
                                     <li><select name="select" class="selectpicker" data-style="btn-info btn-fill btn-block" form="search" id="select" >
-                                        <!--<option disabled selected> Choose city</option>-->
+
 
                                         <option value="username" th:text="${'Username'}">name </option>
                                         <option value="company" th:text="${'Company'}">company</option>
@@ -220,7 +194,7 @@
                                 </ul>
                             </div>
                         </form>
-                    </th:block>
+                    </th:block>-->
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#stats" class="dropdown-toggle btn-magnify" data-toggle="dropdown">

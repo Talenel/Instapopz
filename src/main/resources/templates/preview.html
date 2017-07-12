@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org " xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include=" base::header">
+
+    <title>Home</title>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="sidebar" data-background-color="brown" data-active-color="danger" th:replace="base::sidebar">
+
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-default" th:replace="base::navbar">
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-3"></div>
+
+                    <div class="col-md-3">
+                        <th:block th:if="${image.filterValue}!=0">
+                            <div th:utext="${image.filterUrl1}">
+
+                            </div>
+                        </th:block>
+                        <th:block th:if="${image.filterValue}==0">
+                            <div >
+                                <img th:src="${image.filterUrl1}"/>
+                            </div>
+                        </th:block>
+
+                        <p th:text="${image.caption}">Caption</p>
+                    </div>
+                </div>
+                    <!-- your content here -->
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <form action="#" th:action="@{/create/preview}" th:object="${image}" method="post" id="filterForm">
+
+                            <div class="form-group">
+                                <label for="select">Select Filter Type:</label>
+                                <br/>
+                                <select name="huge" class="selectpicker" data-style="btn-info btn-fill btn-block" form="filterForm" th:field="*{filterValue}" id="select">
+                                    <!--<option disabled selected> Choose city</option>-->
+                                    <option value="0" th:text="${'None'}">blue </option>
+
+                                    <option value="1" th:text="${'Blue'}">blue </option>
+                                    <option value="2" th:text="${'Yellow'}">blue </option>
+                                    <option value="3" th:text="${'Green'}">blue </option>
+                                    <option value="4" th:text="${'Red'}">blue </option>
+                                    <option value="5" th:text="${'Purple'}">blue </option>
+                                    <option value="6" th:text="${'Sepia'}">blue </option>
+                                    <option value="7" th:text="${'Fill Light'}">blue </option>
+                                    <option value="8" th:text="${'Brighten'}">blue </option>
+                                    <option value="9" th:text="${'Darken'}">blue </option>
+                                    <option value="10" th:text="${'Brightest'}">blue </option>
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" th:field="*{imgSrc}" id="imgSrc" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{caption}" id="caption" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{imgName}" id="imgName" placeholder="Java"/>
+
+
+                            </div>
+                            <p><input type="submit" value="Change Filter" /> </p>
+                        </form>
+
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <form action="#" th:action="@{/create/save}" th:object="${image}" method="post" id="saveForm">
+
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" th:field="*{imgSrc}" id="imgSrc2" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{caption}" id="caption2" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{imgName}" id="imgName2" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{filterValue}" id="filterValue" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{filterUrl1}" id="filterUrl1" placeholder="Java"/>
+                                <input type="hidden" class="form-control" th:field="*{filterUrl2}" id="filterUrl2" placeholder="Java"/>
+                            </div>
+                            <p><input type="submit" value="Upload Image" /> </p>
+                        </form>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+        <footer class="footer" th:fragment="base::footer">
+        </footer>
+
+    </div>
+
+</div>
+</body>
+<th:block th:replace="base::scripts">
+</th:block>
+</html>

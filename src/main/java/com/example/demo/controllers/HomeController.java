@@ -7,9 +7,9 @@ import com.example.demo.models.User;
 import com.example.demo.repositories.ImageRepository;
 
 import com.example.demo.repositories.UserRepository;
-/*import com.example.demo.services.UserService;
+import com.example.demo.services.UserService;
 import com.example.demo.validators.UserValidator;
-import com.google.common.collect.Lists;
+/*import com.google.common.collect.Lists;
 import it.ozimov.springboot.mail.model.Email;
 import it.ozimov.springboot.mail.model.defaultimpl.DefaultEmail;
 import it.ozimov.springboot.mail.service.EmailService;*/
@@ -34,11 +34,11 @@ import java.util.Map;
 @Controller
 public class HomeController {
 
-   /* @Autowired
+    @Autowired
     private UserValidator userValidator;
     @Autowired
     private UserService userService;
-*/
+
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -54,34 +54,7 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/upload")
-    public String uploadForm(Model model){
-        model.addAttribute("image", new Image());
-        return "upload";
-    }
-    @PostMapping("/upload")
-    public String singleImageUpload(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes, @ModelAttribute Image image, Model model){
-        if (file.isEmpty()){
-            model.addAttribute("message","Please select a file to upload");
-            return "upload";
-        }
-        try {
-            Map uploadResult =  cloudc.upload(file.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
-            model.addAttribute("message",
-                    "You successfully uploaded '" + file.getOriginalFilename() + "'");
-            model.addAttribute("imageurl", uploadResult.get("url"));
-            String filename = uploadResult.get("public_id").toString() + "." + uploadResult.get("format").toString();
-            model.addAttribute("sizedimageurl", cloudc.createUrl(filename,300,400, "scale"));
-            image.setImgname(filename);
-            image.setImgsrc((String)  cloudc.createUrl(filename,300,400, "scale"));
-            imageRepository.save(image);
-            model.addAttribute("imageList", imageRepository.findAll());
-        } catch (IOException e){
-            e.printStackTrace();
-            model.addAttribute("message", "Sorry I can't upload that!");
-        }
-        return "upload";
-    }
+
 
     @RequestMapping("/login")
     public String login(){
@@ -92,15 +65,15 @@ public class HomeController {
     @RequestMapping(value="/register", method = RequestMethod.GET)
     public String showRegistrationPage(Model model){
         model.addAttribute("user", new User());
-        return "registration";
+        return "register";
     }
-    /*
+
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public String processRegistrationPage(@Valid @ModelAttribute("user") User user, BindingResult result, Model model){
         model.addAttribute("user", user);
         userValidator.validate(user, result);
         if (result.hasErrors()) {
-            return "registration";
+            return "register";
         }
         if(user.getRoleName().equals("user"))
         {
@@ -120,7 +93,7 @@ public class HomeController {
     public void setUserValidator(UserValidator userValidator) {
         this.userValidator = userValidator;
     }
-*/
+
 /*
 
     @Autowired

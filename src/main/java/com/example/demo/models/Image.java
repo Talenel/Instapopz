@@ -15,17 +15,23 @@ public class Image {
 
     private long userId;
 
-    private String imgsrc;
+    private String imgSrc;
 
     private String caption;
 
-    private String imgname;
+    private String imgName;
 
     private int likeCount;
+    
+    private int filterValue;
+    
+    private String filterUrl1;
+
+    private String filterUrl2;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "image_id"))
-    private Collection<Image> likes;
+    @JoinTable(name="likes",joinColumns = @JoinColumn(name = "image_id"),inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Collection<User> likes;
 
 
     public long getId() {
@@ -44,12 +50,12 @@ public class Image {
         this.userId = userId;
     }
 
-    public String getImgsrc() {
-        return imgsrc;
+    public String getImgSrc() {
+        return imgSrc;
     }
 
-    public void setImgsrc(String imgsrc) {
-        this.imgsrc = imgsrc;
+    public void setImgSrc(String imgSrc) {
+        this.imgSrc = imgSrc;
     }
 
     public String getCaption() {
@@ -60,12 +66,12 @@ public class Image {
         this.caption = caption;
     }
 
-    public String getImgname() {
-        return imgname;
+    public String getImgName() {
+        return imgName;
     }
 
-    public void setImgname(String imgname) {
-        this.imgname = imgname;
+    public void setImgName(String imgName) {
+        this.imgName = imgName;
     }
 
     public int getLikeCount() {
@@ -76,11 +82,35 @@ public class Image {
         this.likeCount = likeCount;
     }
 
-    public Collection<Image> getLikes() {
+    public Collection<User> getLikes() {
         return likes;
     }
 
-    public void setLikes(Collection<Image> likes) {
+    public void setLikes(Collection<User> likes) {
         this.likes = likes;
+    }
+
+    public int getFilterValue() {
+        return filterValue;
+    }
+
+    public void setFilterValue(int filterValue) {
+        this.filterValue = filterValue;
+    }
+
+    public String getFilterUrl1() {
+        return filterUrl1;
+    }
+
+    public void setFilterUrl1(String filterUrl1) {
+        this.filterUrl1 = filterUrl1;
+    }
+
+    public String getFilterUrl2() {
+        return filterUrl2;
+    }
+
+    public void setFilterUrl2(String filterUrl2) {
+        this.filterUrl2 = filterUrl2;
     }
 }
