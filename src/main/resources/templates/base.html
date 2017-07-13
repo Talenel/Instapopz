@@ -36,6 +36,25 @@
             display:block;
 
         }
+        .post
+        {
+            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: hidden;
+            border-radius: 3px;
+            margin: 0 0 29px;
+            background: #fff;
+            padding: 20px 15px 16px;
+            color: #2e2e2e;
+            box-shadow: 0 1px rgba(0,0,0,.08);
+            line-height: 26px;
+            font-size: 16px;
+        }
+        .user
+        {
+            font-weight: bold;
+            text-decoration: underline;
+        }
 
     </style>
 </head>
@@ -133,7 +152,7 @@
                         </div>
 
                     </li>
-                    <th:block sec:authorize="isAuthenticated()"
+                    <th:block sec:authorize="isAuthenticated()">
 
                         <li>
                             <a href="/display/myphotos">

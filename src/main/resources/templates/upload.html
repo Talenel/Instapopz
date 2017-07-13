@@ -4,17 +4,34 @@
     <th:block th:replace="base :: header"></th:block>
 </head>
 <body>
-<br/><br/>
-<th:block th:replace="base :: navbar"></th:block>
-<div class="container">
-    <h1>Spring Boot file upload example</h1>
-    <form th:object="${image}" method="POST" action="/create/upload" enctype="multipart/form-data">
-        <input type="file" name="file"/><br/><br/>
-        <input type="text" name="caption" th:field="*{caption}"/><br/>
-        <input type="submit" value="Submit"/>
-    </form>
-    <div th:if="${message}">
-        <h2 th:text="${message}"/><br/><br/>
+
+<div class="sidebar" data-background-color="brown" data-active-color="danger" th:replace="base::sidebar">
+
+</div>
+<div class="main-panel">
+    <nav class="navbar navbar-default" th:replace="base::navbar">
+    </nav>
+
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class= "col-md-3">
+                </div>
+                <div class="container">
+
+                    <h1>Spring Boot file upload example</h1>
+                    <form th:object="${image}" method="POST" action="/create/upload" enctype="multipart/form-data">
+                        <input type="file" name="file"/><br/><br/>
+                        <input type="text" name="caption" th:field="*{caption}"/><br/>
+                        <input type="submit" value="Submit"/>
+                    </form>
+                    <div th:if="${message}">
+                        <h2 th:text="${message}"/><br/><br/>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 <!--

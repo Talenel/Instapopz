@@ -26,6 +26,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -87,6 +89,27 @@ public class HomeController {
         }
         return "home";
     }
+    @RequestMapping("/like/{id}")
+    public String likePhoto(@PathVariable("id") long id, Principal principal)
+    {
+        User user=userRepository.findByUsername(principal.getName());
+        Image image=imageRepository.findOne(id);
+        if(image.getLikes().isEmpty()) {
+            image.getLikes().add(user);
+            image.setLikeCount(image.getLikeCount()+1);
+
+        }
+        else
+        {
+            image.getLikes().add(user);
+            image.setLikeCount(image.getLikeCount()+1);
+        }
+        imageRepository.save(image);
+        return "redirect:/display/photo/"+image.getId();
+    }
+
+
+
     public UserValidator getUserValidator() {
         return userValidator;
     }

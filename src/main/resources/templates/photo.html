@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org " xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include=" base::header">
+
+    <title>Home</title>
+    <
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="sidebar" data-background-color="brown" data-active-color="danger" th:replace="base::sidebar">
+
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-default" th:replace="base::navbar">
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class= "col-md-3">
+                    </div>
+                        <div class= "col-md-5">
+                            <div class="post">
+                                <a th:href="@{'/display/profile/' + ${user.id} }"><p class="user" th:text="${{user.username}}"></p></a>
+                                <div class="image"  th:utext="${image.filterUrl1}">
+                                </div>
+                                <p th:text="${{image.caption}}"></p>
+
+                            </div>
+                            <a id="like" th:href="@{'/like/'+${image.id} }" class="btn btn-success btn-fill btn-icon"><i class="ti-thumb-up"></i></a>
+                            <button th:text="${ 'likes:'+{image.likeCount} }" class="btn btn-success btn-fill" disabled="disabled"></button>
+                            <br/>
+                            <table class="table-striped">
+                                <th:block th:each="comment:${commentList}">
+                                    <tr>
+                                        <td>
+                                            <a th:href="@{'/display/profile/' + ${user.id} }">
+                                                <p class="user" th:text="${ {comment.username}+' said' }"></p>
+                                            </a>
+                                            <p th:text="${{comment.commentText}}"></p>
+                                        </td>
+                                    </tr>
+
+                                </th:block>
+                                <tr>
+                                    <td>
+                                    <form id="commentForm" action="#" th:action="@{/display/comment}" th:object="${comment}" method="post">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" th:field="*{commentText}" placeholder="Enter text here..."  />
+                                            <!--<textarea class="form-control" rows="3" th:field="*{commentText}" form="commentform" placeholder="Enter text here..."></textarea>-->
+                                            <input type="hidden" class="form-control" th:field="*{imageId}" id="imageId" placeholder="Java"/>
+
+                                            <p><input type="submit" value="Comment" /> </p>
+                                        </div>
+                                    </form>
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <footer class="footer" th:fragment="base::footer">
+        </footer>
+
+    </div>
+
+</div>
+</body>
+<th:block th:replace="base::scripts">
+</th:block>
+</html>

@@ -38,12 +38,12 @@ public class User {
     private String username;
 
     @ManyToMany//(fetch = FetchType.EAGER)
-    @JoinTable(name="follows",joinColumns = @JoinColumn(name = "follower_id"),inverseJoinColumns = @JoinColumn(name = "followed_id"))
-    private Collection<Role> followed;
+    @JoinTable(name="follows",joinColumns = @JoinColumn(name = "followed_id"),inverseJoinColumns = @JoinColumn(name = "following_id"))
+    private Collection<User> followed;
 
     @ManyToMany//(fetch = FetchType.EAGER)
-    @JoinTable(name="follows",joinColumns = @JoinColumn(name = "followed_id"),inverseJoinColumns = @JoinColumn(name = "follower_id"))
-    private Collection<Role> followers;
+    @JoinTable(name="follows",joinColumns = @JoinColumn(name = "following_id"),inverseJoinColumns = @JoinColumn(name = "followed_id"))
+    private Collection<User> follower;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -123,20 +123,20 @@ public class User {
         this.roleName = roleName;
     }
 
-    public Collection<Role> getFollowed() {
+    public Collection<User> getFollowed() {
         return followed;
     }
 
-    public void setFollowed(Collection<Role> followed) {
+    public void setFollowed(Collection<User> followed) {
         this.followed = followed;
     }
 
-    public Collection<Role> getFollowers() {
-        return followers;
+    public Collection<User> getFollower() {
+        return follower;
     }
 
-    public void setFollowers(Collection<Role> followers) {
-        this.followers = followers;
+    public void setFollower(Collection<User> follower) {
+        this.follower = follower;
     }
 
     public Collection<Image> getLikes() {

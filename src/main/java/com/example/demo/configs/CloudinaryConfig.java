@@ -40,7 +40,7 @@ public class CloudinaryConfig {
     {
        return cloudinary.url()
                .transformation(new Transformation()
-                       .effect("colorize").color(color).chain()
+                       .effect("colorize:30").color(color).chain()
                        .width(width).height(height).border("2px_solid_black").crop(action))
                .imageTag(name);
     }
@@ -65,7 +65,7 @@ public class CloudinaryConfig {
     {
         return cloudinary.url()
                 .transformation(new Transformation()
-                        .effect("brighness"+value).chain()
+                        .effect("brightness"+value).chain()
                         .width(width).height(height).border("2px_solid_black").crop(action))
                 .imageTag(name);
     }
@@ -73,7 +73,7 @@ public class CloudinaryConfig {
     {
         return cloudinary.url()
                 .transformation(new Transformation()
-                        .effect("auto_brighness").chain()
+                        .effect("auto_brightness").chain()
                         .width(width).height(height).border("2px_solid_black").crop(action))
                 .imageTag(name);
     }

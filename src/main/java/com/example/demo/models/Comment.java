@@ -14,9 +14,11 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private String comment;
+    private String commentText;
 
     private long userId;
+
+    private String username;
 
     private long imageId;
 
@@ -28,12 +30,12 @@ public class Comment {
         this.id = id;
     }
 
-    public String getComment() {
-        return comment;
+    public String getCommentText() {
+        return commentText;
     }
 
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
     }
 
     public long getUserId() {
@@ -50,5 +52,13 @@ public class Comment {
 
     public void setImageId(long imageId) {
         this.imageId = imageId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

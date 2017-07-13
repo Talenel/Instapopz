@@ -49,12 +49,12 @@ public class CreateController {
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
             model.addAttribute("imageurl", uploadResult.get("url"));
             String filename = uploadResult.get("public_id").toString() + "." + uploadResult.get("format").toString();
-            //model.addAttribute("sizedimageurl", cloudc.createSizedUrl(filename,300,400, "scale"));
+            //model.addAttribute("sizedimageurl", cloudc.createSizedUrl(filename,150,200, "limit"));
             image.setImgName(filename);
             image.setImgSrc(uploadResult.get("url").toString());
             image.setFilterValue(0);
             image=checkFilter(image);
-            //image.setImgSrc((String)  cloudc.createSizedUrl(filename,300,400, "scale"));
+            //image.setImgSrc((String)  cloudc.createSizedUrl(filename,150,200, "limit"));
             //imageRepository.save(image);
             model.addAttribute("image", image);
         } catch (IOException e){
@@ -93,38 +93,38 @@ public class CreateController {
     private Image checkFilter(Image image)
     {
         switch(image.getFilterValue()){
-            case 1: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"blue",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createColorImage(image.getImgName(),"blue",500,500,"scale"));
+            case 1: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"blue",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createColorImageSize(image.getImgName(),"blue",500,500,"limit"));
                 return image;
-            case 2: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"yellow",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createColorImage(image.getImgName(),"yellow",500,500,"scale"));
+            case 2: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"yellow",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createColorImageSize(image.getImgName(),"yellow",500,500,"limit"));
                 return image;
-            case 3: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"green",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createColorImage(image.getImgName(),"green",500,500,"scale"));
+            case 3: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"green",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createColorImageSize(image.getImgName(),"green",500,500,"limit"));
                 return image;
-            case 4: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"red",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createColorImage(image.getImgName(),"red",500,500,"scale"));
+            case 4: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"red",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createColorImageSize(image.getImgName(),"red",500,500,"limit"));
                 return image;
-            case 5: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"purple",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createColorImage(image.getImgName(),"purple",500,500,"scale"));
+            case 5: image.setFilterUrl2((String) cloudc.createColorImageSize(image.getImgName(),"purple",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createColorImage(image.getImgName(),"purple",500,500,"limit"));
                 return image;
-            case 6: image.setFilterUrl2((String) cloudc.createSepiaImageSize(image.getImgName(),":20",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createSepiaImage(image.getImgName(),":20",500,500,"scale"));
+            case 6: image.setFilterUrl2((String) cloudc.createSepiaImageSize(image.getImgName(),":20",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createSepiaImageSize(image.getImgName(),":20",500,500,"limit"));
                 return image;
-            case 7: image.setFilterUrl2((String) cloudc.createLightFillImageSize(image.getImgName(),":20",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.createLightFillImage(image.getImgName(),":20",500,500,"scale"));
+            case 7: image.setFilterUrl2((String) cloudc.createLightFillImageSize(image.getImgName(),":20",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createLightFillImageSize(image.getImgName(),":20",500,500,"limit"));
                 return image;
-            case 8: image.setFilterUrl2((String) cloudc.changeBrightnessImageSize(image.getImgName(),":50",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.changeBrightnessImage(image.getImgName(),":50",500,500,"scale"));
+            case 8: image.setFilterUrl2((String) cloudc.changeBrightnessImageSize(image.getImgName(),":50",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.changeBrightnessImageSize(image.getImgName(),":50",500,500,"limit"));
                 return image;
-            case 9: image.setFilterUrl2((String) cloudc.changeBrightnessImageSize(image.getImgName(),":-50",300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.changeBrightnessImage(image.getImgName(),":-50",500,500,"scale"));
+            case 9: image.setFilterUrl2((String) cloudc.changeBrightnessImageSize(image.getImgName(),":-50",150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.changeBrightnessImageSize(image.getImgName(),":-50",500,500,"limit"));
                 return image;
-            case 10: image.setFilterUrl2((String) cloudc.autoBrightnessImageSize(image.getImgName(),300,400,"scale"));
-                image.setFilterUrl1((String) cloudc.autoBrightnessImage(image.getImgName(),500,500,"scale"));
+            case 10: image.setFilterUrl2((String) cloudc.autoBrightnessImageSize(image.getImgName(),150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.autoBrightnessImageSize(image.getImgName(),500,500,"limit"));
                 return image;
-            default:image.setFilterUrl2((String) cloudc.createSizedUrl(image.getImgName(),300,400,"scale"));
-                image.setFilterUrl1(image.getImgSrc());
+            default:image.setFilterUrl2((String) cloudc.createSizedUrl(image.getImgName(),150,200,"limit"));
+                image.setFilterUrl1((String) cloudc.createSizedUrl(image.getImgName(),500,500,"limit"));
                 return image;
         }
 
