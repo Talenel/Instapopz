@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org " xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head th:include=" base::header">
+
+    <title>Home</title>
+    <style>
+        .inline{
+            display:inline;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <div class="sidebar" data-background-color="brown" data-active-color="danger" th:replace="base::sidebar">
+
+    </div>
+    <div class="main-panel">
+        <nav class="navbar navbar-default" th:replace="base::navbar">
+        </nav>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <h2 th:text="${{user.username}}"></h2>
+                    <h4 th:text="${ 'Contact at: '+{user.email} }"></h4>
+                    <h5 th:text="${ 'Id: '+ {user.id} }"></h5>
+                    <br/>
+                    <a th:href="@{'/follow/'+${user.id}}" class="btn btn-primary btn-fill" > Follow User</a>
+
+
+                </div>
+                <hr/>
+                <div class="row">
+                    <h3>Recent Photos:</h3>
+                    <hr/>
+                    <th:block th:each="image:${imageList}">
+                        <div class="col-md-3">
+                            <a th:href="@{'/display/photo/'+${image.id}}"><div class="image"  th:utext="${image.filterUrl2}">
+                            </div></a>
+
+
+                        </div>
+
+
+
+                    </th:block>
+                    <a th:href="@{'/display/morephotos/'+${user.id}}" class="btn btn-primary btn-fill" > More Photos</a>
+
+                    <hr/>
+                </div>
+
+                <div class="row">
+                    <h3>Users Followed:</h3>
+                    <hr/>
+                    <th:block th:each="followed:${followedList}">
+
+                        <a th:href="@{'/display/profile/'+${followed.id}}"><span th:text="${{followed.username}}">
+                        </span></a><span>, </span>
+
+
+
+
+
+
+                    </th:block>
+                   <!-- <a th:href="@{'/display/morephotos/'+${user.id}}" class="btn btn-primary btn-fill" > More Photos</a>-->
+
+                    <hr/>
+                </div>
+                <div class="row">
+                    <h3>Followers:</h3>
+                    <hr/>
+                    <th:block th:each="follower:${followerList}">
+
+                        <a th:href="@{'/display/profile/'+${follower.id}}"  class="inline"><span th:text="${{follower.username}}"></span> </a>
+                        <span class="inline">,</span>
+
+
+                    </th:block>
+                    <!-- <a th:href="@{'/display/morephotos/'+${user.id}}" class="btn btn-primary btn-fill" > More Photos</a>-->
+
+                    <hr/>
+                </div>
+
+
+
+            </div>
+        </div>
+
+
+
+        <footer class="footer" th:fragment="base::footer">
+        </footer>
+
+    </div>
+
+</div>
+</body>
+<th:block th:replace="base::scripts">
+</th:block>
+</html>

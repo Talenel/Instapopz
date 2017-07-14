@@ -49,9 +49,20 @@ public class DisplayController {
         ArrayList<Image> imageList=new ArrayList<>();
         for(int i=1;i<=10;i++)
         {
-            imageList.add(imageList2.get(imageList2.size()-i));
+            if((imageList2.size()-i)>=0) {
+                imageList.add(imageList2.get(imageList2.size() - i));
+            }
         }
         model.addAttribute("imageList",imageList);
+
+
+        return "results";
+    }
+    @RequestMapping("/morephotos/{id}")
+    public String viewPhotos(@PathVariable("id") long id,Model model)
+    {
+        User user=userRepository.findOne(id);
+        model.addAttribute("imageList",imageRepository.findAllByUserId(user.getId()));
 
 
         return "results";
@@ -72,11 +83,15 @@ public class DisplayController {
         return "photo";
     }
     @RequestMapping("/profile")
-    public String viewMyProfile(@PathVariable("id") long id, Model model, Principal principal)
+    public String viewMyProfile( Model model, Principal principal)
     {
         User user=userRepository.findByUsername(principal.getName());
         model.addAttribute("user", user);
         model.addAttribute("imageList",imageRepository.findAllByUserId(user.getId()));
+        Boolean like=false;
+        Boolean follow=false;
+        model.addAttribute("like",like);
+        model.addAttribute("follow", follow);
 
         return "profile";
     }
@@ -86,6 +101,8 @@ public class DisplayController {
         User user=userRepository.findOne(id);
         model.addAttribute("imageList",imageRepository.findAllByUserId(user.getId()));
         model.addAttribute("user", user);
+        model.addAttribute("followedList",user.getFollowed());
+        model.addAttribute("followerList",user.getFollower());
 
         return "profile";
     }

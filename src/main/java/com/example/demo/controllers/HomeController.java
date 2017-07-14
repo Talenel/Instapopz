@@ -107,6 +107,19 @@ public class HomeController {
         imageRepository.save(image);
         return "redirect:/display/photo/"+image.getId();
     }
+    @RequestMapping("/follow/{id}")
+    public String followUser(@PathVariable("id") long id, Principal principal)
+    {
+        User user=userRepository.findByUsername(principal.getName());
+        User followed=userRepository.findOne(id);
+
+
+            user.getFollowed().add(followed);
+
+
+        userRepository.save(user);
+        return "redirect:/display/profile/"+followed.getId();
+    }
 
 
 

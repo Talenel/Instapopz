@@ -11,6 +11,7 @@ import java.util.List;
 public interface ImageRepository extends CrudRepository<Image,Long> {
 
     public List<Image> findAllByUserId(long userId);
+    public List<Image> findTop12ByUserIdOrderByIdDesc(long userId);
 
 
     public List<Image> findAll();

@@ -30,9 +30,12 @@
                                 <p th:text="${{image.caption}}"></p>
 
                             </div>
-                            <a id="like" th:href="@{'/like/'+${image.id} }" class="btn btn-success btn-fill btn-icon"><i class="ti-thumb-up"></i></a>
-                            <button th:text="${ 'likes:'+{image.likeCount} }" class="btn btn-success btn-fill" disabled="disabled"></button>
+                            <div class="inline">
+                                <a id="like" th:href="@{'/like/'+${image.id} }" class="btn btn-success btn-icon"><i class="ti-thumb-up"></i></a>
+                                <button th:text="${ 'likes:'+{image.likeCount} }" class="btn btn-success btn-fill" disabled="disabled"></button>
+                            </div>
                             <br/>
+                            <h4>Comments:</h4>
                             <table class="table-striped">
                                 <th:block th:each="comment:${commentList}">
                                     <tr>
