@@ -21,14 +21,16 @@
                 <div class="row">
                     <th:block th:each = "image: ${imageList}">
                         <div class= "col-md-2">
-                            <div class="container">
+
                                 <a th:href="@{'/display/photo/'+${image.id}}"><div class="image"  th:utext="${image.filterUrl2}">
                                 </div></a>
+                            <br/>
 
 
-                            </div>
+
 
                         </div>
+
                     </th:block>
 
                 </div>

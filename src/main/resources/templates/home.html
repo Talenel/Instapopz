@@ -18,6 +18,9 @@
             <div class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <div th:if="${message}">
+                            <h2 th:text="${message}"/><br/><br/>
+                        </div>
                         <div class="jumbotron">
                             <h1>Instapopz!</h1>
                             <p>Join today and connect with millions of users posting images all over the world!</p>

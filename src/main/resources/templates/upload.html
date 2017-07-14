@@ -4,7 +4,7 @@
     <th:block th:replace="base :: header"></th:block>
 </head>
 <body>
-
+<div class="wrapper">
 <div class="sidebar" data-background-color="brown" data-active-color="danger" th:replace="base::sidebar">
 
 </div>
@@ -18,7 +18,7 @@
             <div class="row">
                 <div class= "col-md-3">
                 </div>
-                <div class="container">
+                <div class="col-md-5">
 
                     <h1>Spring Boot file upload example</h1>
                     <form th:object="${image}" method="POST" action="/create/upload" enctype="multipart/form-data">
@@ -33,6 +33,8 @@
             </div>
         </div>
     </div>
+    <footer class="footer" th:fragment="base::footer">
+    </footer>
 
 <!--
     <div class="row">
@@ -48,6 +50,7 @@
         </th:block>
     </div>
 -->
+</div>
 </div>
 
 

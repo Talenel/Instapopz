@@ -42,17 +42,22 @@
                 <div class="row">
                     <h3>Recent Photos:</h3>
                     <hr/>
+                    <div class="row">
                     <th:block th:each="image:${imageList}">
+
                         <div class="col-md-3">
                             <a th:href="@{'/display/photo/'+${image.id}}"><div class="image"  th:utext="${image.filterUrl2}">
                             </div></a>
 
-
+                        <br/>
                         </div>
 
 
 
+
                     </th:block>
+                    </div>
+                    <br/>
                     <a th:href="@{'/display/morephotos/'+${user.id}}" class="btn btn-primary btn-fill" > More Photos</a>
 
                     <hr/>

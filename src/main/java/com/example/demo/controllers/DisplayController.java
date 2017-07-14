@@ -67,7 +67,7 @@ public class DisplayController {
         List<Image> imageList2=imageRepository.findAll();
         ArrayList<Image> imageList=new ArrayList<>();
 
-        for(int i=1;i<=10;i++)
+        for(int i=1;i<=30;i++)
         {
             if((imageList2.size()-i)>=0) {
                 imageList.add(imageList2.get(imageList2.size() - i));
