@@ -28,6 +28,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.Principal;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -89,35 +90,60 @@ public class HomeController {
         }
         return "home";
     }
+
     @RequestMapping("/like/{id}")
-    public String likePhoto(@PathVariable("id") long id, Principal principal)
+    public String likePhoto(@PathVariable("id") long id, Principal principal) {
+        User user = userRepository.findByUsername(principal.getName());
+        Image image = imageRepository.findOne(id);
+        if (checkLikes(image, user))
+        {
+            image.getLikes().add(user);
+            image.setLikeCount(image.getLikeCount() + 1);
+            imageRepository.save(image);
+        }
+
+        return "redirect:/display/photo/"+image.getId();
+    }
+
+    @RequestMapping("/unlike/{id}")
+    public String unlikePhoto(@PathVariable("id") long id, Principal principal)
     {
         User user=userRepository.findByUsername(principal.getName());
         Image image=imageRepository.findOne(id);
-        if(image.getLikes().isEmpty()) {
-            image.getLikes().add(user);
-            image.setLikeCount(image.getLikeCount()+1);
 
+        if(!(checkLikes(image,user))) {
+            image.getLikes().remove(user);
+            image.setLikeCount(image.getLikeCount() - 1);
+            imageRepository.save(image);
         }
-        else
-        {
-            image.getLikes().add(user);
-            image.setLikeCount(image.getLikeCount()+1);
-        }
-        imageRepository.save(image);
+
         return "redirect:/display/photo/"+image.getId();
     }
+
     @RequestMapping("/follow/{id}")
     public String followUser(@PathVariable("id") long id, Principal principal)
     {
         User user=userRepository.findByUsername(principal.getName());
         User followed=userRepository.findOne(id);
 
-
+        if(checkFollows(followed,user)) {
             user.getFollowed().add(followed);
+            userRepository.save(user);
+        }
 
 
-        userRepository.save(user);
+        return "redirect:/display/profile/"+followed.getId();
+    }
+    @RequestMapping("/unfollow/{id}")
+    public String unfollowUser(@PathVariable("id") long id, Principal principal)
+    {
+        User user=userRepository.findByUsername(principal.getName());
+        User followed=userRepository.findOne(id);
+
+        if(!(checkFollows(followed,user))) {
+            user.getFollowed().remove(followed);
+            userRepository.save(user);
+        }
         return "redirect:/display/profile/"+followed.getId();
     }
 
@@ -128,6 +154,42 @@ public class HomeController {
     }
     public void setUserValidator(UserValidator userValidator) {
         this.userValidator = userValidator;
+    }
+    private boolean checkLikes(Image image, User liker)
+    {
+        if(image.getUserId()==liker.getId())
+        {
+            return false;
+        }
+
+        for(User user:image.getLikes())
+        {
+            if(user.getId()==liker.getId())
+            {
+                return false;
+            }
+        }
+
+
+        return true;
+    }
+    private boolean checkFollows(User followed, User pFollower)
+    {
+        if(followed.getId()==pFollower.getId())
+        {
+            return false;
+        }
+
+        for(User user:followed.getFollower())
+        {
+            if(user.getId()==pFollower.getId())
+            {
+                return false;
+            }
+        }
+
+
+        return true;
     }
 
 /*

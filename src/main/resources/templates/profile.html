@@ -28,8 +28,14 @@
                     <h4 th:text="${ 'Contact at: '+{user.email} }"></h4>
                     <h5 th:text="${ 'Id: '+ {user.id} }"></h5>
                     <br/>
-                    <a th:href="@{'/follow/'+${user.id}}" class="btn btn-primary btn-fill" > Follow User</a>
-
+                    <th:block th:if="${user.id!=current.id}">
+                        <th:block th:if="${follow==true}">
+                            <a th:href="@{'/follow/'+${user.id}}" class="btn btn-primary btn-fill" > Follow User</a>
+                        </th:block>
+                        <th:block th:if="${follow==false}">
+                            <a th:href="@{'/unfollow/'+${user.id}}" class="btn btn-danger btn-fill" > UnFollow User</a>
+                        </th:block>
+                    </th:block>
 
                 </div>
                 <hr/>

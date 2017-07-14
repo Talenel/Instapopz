@@ -55,6 +55,12 @@
             font-weight: bold;
             text-decoration: underline;
         }
+        .btn-danger
+        {
+            text-decoration-color: #7CE4FE;
+            color:#7CE4FE;
+            border-color:#EB5E28 ;
+        }
 
     </style>
 </head>
@@ -101,6 +107,18 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="/display/profile">
+                                        <span class="sidebar-mini">MP</span>
+                                        <span class="sidebar-normal">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/display/myphotos">
+                                        <span class="sidebar-mini">VP</span>
+                                        <span class="sidebar-normal">View My Photos</span>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="#settings">
                                         <span class="sidebar-mini">S</span>
                                         <span class="sidebar-normal">Settings</span>
@@ -135,7 +153,7 @@
                                     <li>
                                         <a href="/register">
                                             <span class="sidebar-mini">R</span>
-                                            <span class="sidebar-normal">register</span>
+                                            <span class="sidebar-normal">Register</span>
                                         </a>
                                     </li>
                                 </th:block>
@@ -155,9 +173,9 @@
                     <th:block sec:authorize="isAuthenticated()">
 
                         <li>
-                            <a href="/display/myphotos">
+                            <a href="/display/recentphotos">
                                 <i class="ti-view-list"></i>
-                                <p>View My Photos</p>
+                                <p>View Recent Photos</p>
                             </a>
                         </li>
                         <li>
