@@ -11,6 +11,7 @@ import java.util.Collection;
  * Created by student on 7/11/17.
  */
 @Entity
+@Table(name = "userData")
 public class User {
 
     @Id
